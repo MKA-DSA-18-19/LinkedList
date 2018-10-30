@@ -79,8 +79,7 @@ void List<T>::append(T element){
 template < class T > 
 T List<T>::get(int pos){
   if (size == 0 || pos >= size)
-    return 0yeah
-      ;
+    return 0;
   Node<T>* c = head; 
   for(int i = 0; i < pos; i++){
     c=c->getNext();
@@ -141,12 +140,6 @@ int main(){
   peter.print();
   cout << "Get the 2nd position, it should be 7: " << peter.get(2) << endl;
   cout << peter.getSize() << endl;
-  peter.remove(0);
-  peter.print();
-  peter.remove(peter.getSize()-1);
-  peter.print();
-  peter.remove(1);
-  peter.print();
 };
 
 
