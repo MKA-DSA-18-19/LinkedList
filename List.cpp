@@ -23,22 +23,28 @@ List<T>::~List(){
 template <class T>
 // copy constructor
 List<T>::List(const List<T>& other){
-  // call copy construcotr on 
-  
-  // finish
+  cout << "in copy const" << endl;
+  if (other.isEmpty()) { head = nullptr; size = 0; }
+  else{
+    Node<T>* otherCurr = other.head;
+    head = new Node<T>(other.head->getElement(), other.head -> getNext());
+  }
+  // this is only creating a shallow copy of the remaining nodes
+  // need to go back in and create a deep copy of them
+    
   
 }
 template <class T>
 List<T>& List<T>::operator= (const List<T>& other){
+  cout << "in =" << endl;
   //fill in
-  //call copy assignment on members
 
   // convention is to always return *this
   return *this;
 }
 
 template < class T >
-bool List<T>::isEmpty(){
+bool List<T>::isEmpty() const {
   return (size == 0);  
 }
 
@@ -89,7 +95,7 @@ T List<T>::get(int pos){
 
 
 template < class T >
-int List<T>::getSize(){
+int List<T>::getSize() const {
   return size;
 }
 
@@ -140,6 +146,22 @@ int main(){
   peter.print();
   cout << "Get the 2nd position, it should be 7: " << peter.get(2) << endl;
   cout << peter.getSize() << endl;
+  peter.remove(0);
+  peter.print();
+
+  cout << "USING COPY CONSTRUCTOR" << endl;
+  List<int> list2 = peter;
+  list2.print();
+  peter.remove(0);
+  peter.print();
+  peter.head->getNext()->setElement(100);
+  peter.print();
+  list2.print();
+  
+  // using destructor
+  List<int>* l = new List<int>(10);
+  delete l;
+
 };
 
 

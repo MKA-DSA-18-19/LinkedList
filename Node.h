@@ -1,11 +1,11 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <iostream>
-
 /* Node header file
  * Fall 2018
  */
+
+#include <iostream>
 
 template <class T>
 
@@ -17,28 +17,22 @@ class Node{
  public:
   explicit Node(T elt){
     element = elt;
-    next = NULL;
+    next = nullptr;
   }
-  explicit Node(T elt, Node<T>* n){
+  explicit Node(T elt, Node* n){
     element = elt;
     next = n;
   }
-  ~Node(){ //destructor
-    delete next;
-  }
-  Node(const Node<T>& other){ //copy constructor
+
+  Node(const Node<T>& other){
     element = other.getElement();
     next = new Node<T>(other.getElement(), other.getNext());
   }
-  Node<T>& operator= (const Node<T>& other); //copy assignment
-
-  T getElement(){ return element; }
-
-  Node<T>* getNext(){ return next; }
-
-  void setElement(T elt){ element = elt; }
-
-  void setNext(Node<T>* n){ next = n; }
+  
+  T getElement() const { return element;}
+  Node<T>* getNext() const { return next; }
+  void setElement(T elt) { element = elt; }
+  void setNext(Node<T>* n) {next = n; }
 };
 
 #endif

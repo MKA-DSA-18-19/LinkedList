@@ -12,11 +12,11 @@
 template <typename T>
 
 class List{
- private:
+  
+ public:
   Node<T>* head;
   int size;
   
- public:
   explicit List(T element); // constructor
   
   ~List(); // destructor
@@ -24,11 +24,11 @@ class List{
   List<T>& operator=(const List<T>& other);// copy assignment
 
   
-  bool isEmpty();
+  bool isEmpty() const;
   bool insert(T element, int pos);
   void append(T element);
   T get(int pos);
-  int getSize();
+  int getSize() const;
   bool remove(int pos);
   void print();
 };
