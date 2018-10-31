@@ -17,7 +17,14 @@ List<T>::List(T element){
 template <class T>
 // destructor
 List<T>::~List(){
-  delete head;
+  Node<T>* current = head;
+  while (current != nullptr){
+    Node<T>* old = current;
+    current = current->getNext();
+    delete old;
+  }
+  // delete current;
+  // delete head;
 }
 
 template <class T>
@@ -137,7 +144,7 @@ bool List<T>::remove(int pos){
 
 
 int main(){
-  List<int> peter = List<int>(7);
+  /*  List<int> peter = List<int>(7);
   peter.append(1);
   peter.insert(1,0);
   peter.insert(3,1);
@@ -156,7 +163,7 @@ int main(){
   peter.print();
   peter.head->getNext()->setElement(100);
   peter.print();
-  list2.print();
+  list2.print();*/
   
   // using destructor
   List<int>* l = new List<int>(10);
