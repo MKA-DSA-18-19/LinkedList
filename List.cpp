@@ -8,166 +8,23 @@
 
 using namespace std;
 
-template < class T >
-List<T>::List(T element){
-  head = new Node<T>(element);
-  size = 1;
-}
-
-template <class T>
-// destructor
-List<T>::~List(){
-  Node<T>* current = head;
-  while (current != nullptr){
-    Node<T>* old = current;
-    current = current->getNext();
-    delete old;
-  }
-  // delete current;
-  // delete head;
-}
-
-template <class T>
-// copy constructor
-List<T>::List(const List<T>& other){
-  cout << "in copy const" << endl;
-  if (other.isEmpty()) { head = nullptr; size = 0; }
-  else{
-    Node<T>* otherCurr = other.head;
-    head = new Node<T>(other.head->getElement(), other.head -> getNext());
-  }
-  // this is only creating a shallow copy of the remaining nodes
-  // need to go back in and create a deep copy of them
-    
-  
-}
-template <class T>
-List<T>& List<T>::operator= (const List<T>& other){
-  cout << "in =" << endl;
-  //fill in
-
-  // convention is to always return *this
-  return *this;
-}
-
-template < class T >
-bool List<T>::isEmpty() const {
-  return (size == 0);  
-}
-
-template < class T >
-bool List<T>::insert(T element, int pos){
-  if(pos > size || pos < 0){ return false; }
-  
-  Node<T>* cur = head;
-  Node<T>* julia;
-  
-  if(pos == 0) {
-    julia = new Node<T>(element, head);
-    head = julia;
-    size++;
-    return true;
-  }
-  
-  for(int i = 0; i < pos - 1; i++){
-    cur = cur->getNext();
-  }
-  
-  
-  Node<T>* next = cur->getNext();
-  julia = new Node<T>(element, next);
-  cur->setNext(julia);
-  
-  size++;
-  
-  return true;
-}
-
-template < class T>
-void List<T>::append(T element){
-  insert(element, size);
-}
-
-
-template < class T > 
-T List<T>::get(int pos){
-  if (size == 0 || pos >= size)
-    return 0;
-  Node<T>* c = head; 
-  for(int i = 0; i < pos; i++){
-    c=c->getNext();
-  }
-  return c->getElement();
-}
-
-
-template < class T >
-int List<T>::getSize() const {
-  return size;
-}
-
-template < class T >
-void List<T>::print(){
-  for (Node<T>* cur = head; cur!=nullptr; cur=cur->getNext())
-    cout << cur->getElement() << " ";
-  cout << endl;
-}
-  
-
-template < class T >
-bool List<T>::remove(int pos){
-  if(pos > size) {return false;}
-  Node<T>* casey = head;
-  Node<T>* tbd;
-  if(pos == 0){
-    tbd = head;
-    head = tbd->getNext();
-    delete tbd;
-    size--;
-    return true;
-  }
-  for (int i = 0; i < pos - 1; i++){
-    casey = casey->getNext();
-  }
-  if (pos == size - 1){
-    delete casey->getNext();
-    casey->setNext(nullptr);
-    size--;
-    return true;
-  }
-  tbd = casey->getNext();
-  casey->setNext(tbd->getNext());
-  delete tbd;
-  size--;
-  return true;
-}
-
-
 int main(){
-  /*  List<int> peter = List<int>(7);
+  List<int> peter = List<int>(7);
   peter.append(1);
   peter.insert(1,0);
   peter.insert(3,1);
-  cout << "Trying to insert past end " << peter.insert(7, 10) << endl;
-  peter.insert(56,peter.getSize());
-  peter.print();
-  cout << "Get the 2nd position, it should be 7: " << peter.get(2) << endl;
-  cout << peter.getSize() << endl;
-  peter.remove(0);
-  peter.print();
 
-  cout << "USING COPY CONSTRUCTOR" << endl;
   List<int> list2 = peter;
   list2.print();
   peter.remove(0);
   peter.print();
   peter.head->getNext()->setElement(100);
   peter.print();
-  list2.print();*/
+  list2.print();
   
-  // using destructor
+  /* // using destructor
   List<int>* l = new List<int>(10);
-  delete l;
+  delete l;*/
 
 };
 

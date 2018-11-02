@@ -23,7 +23,7 @@ class Node{
     element = elt;
     next = n;
   }
-
+  
   Node(const Node<T>& other){
     element = other.getElement();
     next = new Node<T>(other.getElement(), other.getNext());
